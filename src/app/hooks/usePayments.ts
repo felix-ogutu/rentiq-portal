@@ -1,0 +1,25 @@
+import {PaymentCreateRequest, PaymentFilter} from "../types/payment";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {createPayment, fetchPayments} from "../services/paymentService";
+
+export const usePayments = (
+    filters: PaymentFilter = { page: 0, size: 20 },
+) => {
+    return useQuery<PaymentResponse, Error>({
+        queryKey: ["payments", filters],
+        queryFn: () => fetchPayments(filters),
+        staleTime: 1000 * 60 * 5,
+    });
+};
+
+export const useCreatePayment = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (data: PaymentCreateRequest) => createPayment(data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["payments"] });
+            // Payment affects tenant balance
+            queryClient.invalidateQueries({ queryKey: ["tenants"] });
+        },
+    });
+};
