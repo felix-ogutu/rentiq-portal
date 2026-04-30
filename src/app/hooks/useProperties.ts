@@ -9,6 +9,7 @@ export const useProperties = (
         queryKey: ["properties", filters],
         queryFn: () => fetchProperties(filters),
         staleTime: 1000 * 60 * 5,
+        gcTime: 1000 * 60 * 10,
     });
 };
 
@@ -19,6 +20,9 @@ export const useCreateProperty = () => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["properties"] });
         },
+        onError: (error:any) => {
+            console.error("Error creating property:", error);
+        }
     });
 };
 
@@ -29,5 +33,8 @@ export const useUpdateProperty = () => {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["properties"] });
         },
+        onError: (error:any) => {
+            console.error("Error updating property:", error);
+        }
     });
 };

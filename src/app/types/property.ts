@@ -6,6 +6,8 @@ export interface Property {
     totalUnits: number;
     occupiedUnits: number;
     monthlyRevenue: number;
+    dateCreated?: string;
+    dateUpdated?: string;
 }
 
 export interface PropertyCreateRequest {
@@ -16,13 +18,8 @@ export interface PropertyCreateRequest {
     monthlyRevenue: number;
 }
 
-export interface PropertyUpdateRequest {
+export interface PropertyUpdateRequest extends PropertyCreateRequest {
     id: number;
-    propertyName: string;
-    address: string;
-    totalUnits: number;
-    occupiedUnits: number;
-    monthlyRevenue: number;
 }
 
 export interface PropertyFilter {
@@ -36,5 +33,13 @@ export interface PropertyResponse {
     status: number;
     message: string;
     totalResults: number;
+    stats?: {
+        totalProperties: number;
+        totalUnits: number;
+        totalOccupiedUnits: number;
+        totalMonthlyRevenue: number;
+        occupancyRate: number;
+    };
     data: Property[];
+    timeStamp?: string;
 }

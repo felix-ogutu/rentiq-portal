@@ -7,11 +7,11 @@ export const createProperty = async (data: PropertyCreateRequest) => {
 };
 
 export const fetchProperties = async (
-    filters: PropertyFilter = { page: 0, size: 20 },
+    filters: PropertyFilter = { page: 0, size: 20 }
 ): Promise<PropertyResponse> => {
     const response = await api.post<PropertyResponse>(
         "/api/v1/properties/view",
-        filters,
+        filters
     );
     return response.data;
 };

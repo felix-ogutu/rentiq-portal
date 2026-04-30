@@ -9,7 +9,8 @@ export enum UnitType {
 }
 export enum UnitStatus {
     VACANT = "VACANT",
-    OCCUPIED = "OCCUPIED"
+    OCCUPIED = "OCCUPIED",
+    UNDER_MAINTENANCE = "UNDER_MAINTENANCE",
 }
 
 export interface Unit {
@@ -19,6 +20,8 @@ export interface Unit {
     unitType: UnitType;
     monthlyRent: number;
     status: UnitStatus;
+    dateCreated?: string;
+    dateUpdated?: string;
 }
 
 export interface UnitCreateRequest {
@@ -29,13 +32,8 @@ export interface UnitCreateRequest {
     status: UnitStatus;
 }
 
-export interface UnitUpdateRequest {
+export interface UnitUpdateRequest extends UnitCreateRequest {
     id: number;
-    propertyId: number;
-    unitNumber: string;
-    unitType: UnitType;
-    monthlyRent: number;
-    status: UnitStatus;
 }
 
 export interface UnitFilter {
@@ -51,5 +49,12 @@ export interface UnitResponse {
     status: number;
     message: string;
     totalResults: number;
+    stats?: {
+        totalUnits: number;
+        occupiedUnits: number;
+        vacantUnits: number;
+        occupancyRate: number;
+    };
     data: Unit[];
+    timeStamp?: string;
 }
