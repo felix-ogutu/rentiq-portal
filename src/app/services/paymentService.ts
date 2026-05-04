@@ -1,10 +1,10 @@
-import {PaymentCreateRequest, PaymentFilter} from "../types/payment";
+import {PaymentApiResponse, PaymentCreateRequest, PaymentFilter} from "../types/payment";
 import {api} from "../lib/api";
 
 export const fetchPayments = async (
     filters: PaymentFilter = { page: 0, size: 20 },
-): Promise<PaymentResponse> => {
-    const response = await api.post<PaymentResponse>(
+): Promise<PaymentApiResponse> => {
+    const response = await api.post<PaymentApiResponse>(
         "/api/v1/payments/view",
         filters,
     );

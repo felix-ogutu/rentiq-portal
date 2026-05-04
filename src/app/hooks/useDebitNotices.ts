@@ -22,7 +22,7 @@ export const useCreateDebitNotice = () => {
     return useMutation({
         mutationFn: (data: DebitNoticeCreateRequest) => createDebitNotice(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["debitNotices"] });
+            queryClient.invalidateQueries({ queryKey: ["debitNotices"],exact: false, });
         },
     });
 };
@@ -32,7 +32,7 @@ export const useUpdateDebitNotice = () => {
     return useMutation({
         mutationFn: (data: DebitNoticeUpdateRequest) => updateDebitNotice(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["debitNotices"] });
+            queryClient.invalidateQueries({ queryKey: ["debitNotices"],exact: false, });
         },
     });
 };

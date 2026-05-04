@@ -1,15 +1,27 @@
-export type PaymentType = 'RENT' | 'DEPOSIT' | 'UTILITY' | 'PENALTY' | 'OTHER';
-export type PaymentMethod = 'MPESA' | 'BANK_TRANSFER' | 'CASH' | 'CHEQUE';
+// types/payment.ts
+export enum PaymentType {
+    RENT = "RENT",
+    UTILITY = "UTILITY",
+    SERVICE_CHARGE = "SERVICE_CHARGE",
+    OTHER = "OTHER",
+}
+
+export enum PaymentMethod {
+    MPESA = "MPESA",
+    BANK = "BANK",
+    CASH = "CASH",
+}
 
 export interface Payment {
     id: number;
-    tenantId: number;
+    tenantName: string;
+    propertyName: string;
+    unitName: string;
     paymentType: PaymentType;
     amount: number;
     paymentMethod: PaymentMethod;
     reference: string;
     paymentDate: string;
-    notes: string;
 }
 
 export interface PaymentCreateRequest {
@@ -19,7 +31,7 @@ export interface PaymentCreateRequest {
     paymentMethod: PaymentMethod;
     reference: string;
     paymentDate: string;
-    notes: string;
+    notes?: string;
 }
 
 export interface PaymentFilter {
@@ -34,9 +46,15 @@ export interface PaymentFilter {
     dateTo?: string;
 }
 
-export interface PaymentResponse {
+export interface PaymentApiResponse {
     status: number;
     message: string;
     totalResults: number;
+    stats?: {
+        mpesaAmount: number;
+        bankAmount: number;
+        cashAmount: number;
+    };
     data: Payment[];
+    timeStamp?: string;
 }

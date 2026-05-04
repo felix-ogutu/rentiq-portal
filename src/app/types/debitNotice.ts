@@ -1,13 +1,20 @@
-export type DebitNoticeStatus = 'PENDING' | 'APPROVED' | 'REJECTED' | 'PAID';
+export enum DebitNoticeStatus {
+    PENDING = 'PENDING',
+    PROCESSED = 'PROCESSED',
+}
 
 export interface DebitNotice {
     id: number;
+    tenantId?: number;
     tenantName: string;
+    propertyId?: number;
     propertyName: string;
     amount: number;
     reason: string;
     description: string;
     status: DebitNoticeStatus;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 export interface DebitNoticeCreateRequest {
@@ -33,13 +40,17 @@ export interface DebitNoticeFilter {
     size: number;
     tenantName?: string;
     propertyName?: string;
-    startDate?: string;
-    endDate?: string;
+    status?: DebitNoticeStatus;
 }
 
 export interface DebitNoticeResponse {
     status: number;
     message: string;
     totalResults: number;
+    stats?: {
+        pendingCount: number;
+        processedCount: number;
+        totalAmount: number;
+    };
     data: DebitNotice[];
 }

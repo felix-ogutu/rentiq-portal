@@ -1,4 +1,9 @@
-export type ExpenseStatus = 'PENDING' | 'APPROVED' | 'REJECTED' | 'PAID';
+// types/expense.ts
+
+export enum ExpenseStatus {
+    PENDING = 'PENDING',
+    PROCESSED = 'PROCESSED',
+}
 
 export interface Expense {
     id: number;
@@ -7,6 +12,8 @@ export interface Expense {
     description: string;
     amount: number;
     status: ExpenseStatus;
+    dateCreated?: string;
+    dateUpdated?: string;
 }
 
 export interface ExpenseCreateRequest {
@@ -14,7 +21,6 @@ export interface ExpenseCreateRequest {
     category: string;
     description: string;
     amount: number;
-    status: ExpenseStatus;
 }
 
 export interface ExpenseUpdateRequest {
@@ -38,5 +44,14 @@ export interface ExpenseResponse {
     status: number;
     message: string;
     totalResults: number;
+    stats?: {
+        totalExpenses: number;
+        paidCount: number;
+        paidAmount: number;
+        approvedCount: number;
+        approvedAmount: number;
+        pendingCount: number;
+        pendingAmount: number;
+    };
     data: Expense[];
 }

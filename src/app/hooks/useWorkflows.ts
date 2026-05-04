@@ -30,7 +30,11 @@ export const useApproveWorkflow = () => {
     return useMutation({
         mutationFn: approveWorkflow,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["workflows"] });
+            queryClient.invalidateQueries({
+                queryKey: ["workflows"],
+                exact: false,
+
+            });
         },
     });
 };
@@ -42,7 +46,10 @@ export const useRejectWorkflow = () => {
     return useMutation({
         mutationFn: rejectWorkflow,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["workflows"] });
+            queryClient.invalidateQueries({
+                queryKey: ["workflows"],
+                exact: false,
+            });
         },
     });
 };

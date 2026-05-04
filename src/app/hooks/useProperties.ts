@@ -18,7 +18,7 @@ export const useCreateProperty = () => {
     return useMutation({
         mutationFn: (data: PropertyCreateRequest) => createProperty(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["properties"] });
+            queryClient.invalidateQueries({ queryKey: ["properties"],exact: false, });
         },
         onError: (error:any) => {
             console.error("Error creating property:", error);
@@ -31,7 +31,7 @@ export const useUpdateProperty = () => {
     return useMutation({
         mutationFn: (data: PropertyUpdateRequest) => updateProperty(data),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["properties"] });
+            queryClient.invalidateQueries({ queryKey: ["properties"],exact: false, });
         },
         onError: (error:any) => {
             console.error("Error updating property:", error);

@@ -1,11 +1,9 @@
-import {PaymentCreateRequest, PaymentFilter} from "../types/payment";
+import {PaymentApiResponse, PaymentCreateRequest, PaymentFilter} from "../types/payment";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {createPayment, fetchPayments} from "../services/paymentService";
 
-export const usePayments = (
-    filters: PaymentFilter = { page: 0, size: 20 },
-) => {
-    return useQuery<PaymentResponse, Error>({
+export const usePayments = (filters: PaymentFilter = { page: 0, size: 20 }) => {
+    return useQuery<PaymentApiResponse, Error>({
         queryKey: ["payments", filters],
         queryFn: () => fetchPayments(filters),
         staleTime: 1000 * 60 * 5,
