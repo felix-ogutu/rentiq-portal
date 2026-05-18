@@ -12,6 +12,12 @@ export interface Workflow {
     description?: string;
 }
 
+export interface WorkflowStats {
+    approvedCount: number;
+    rejectedCount: number;
+    pendingCount: number;
+}
+
 export enum EntityType {
     USER = "USER",
     PROPERTIES = "PROPERTIES",
@@ -39,5 +45,6 @@ export interface WorkflowResponse {
     status: number;
     message: string;
     totalResults: number;
+    stats?: WorkflowStats;
     data: Workflow[];
 }

@@ -16,6 +16,8 @@ import { UsersRolesView } from './components/landlord/users-roles-view';
 import { Toaster } from './components/ui/sonner';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {WorkflowsView} from "./components/landlord/workflows-view";
+import {InvoicesView} from "./components/landlord/InvoicesView";
+import {PaymentLinkView} from "./components/landlord/PaymentLinkView";
 
 type RouteDefinition = {
     path: string;
@@ -35,6 +37,9 @@ const ROLE_ROUTES: Record<string, RouteDefinition[]> = {
         { path: 'users-roles',   element: <UsersRolesView /> },
         { path: 'settings',      element: <SettingsView /> },
         { path: 'workflows',      element: <WorkflowsView /> },
+        { path: 'invoices',      element: <InvoicesView /> },
+        { path: 'pay/:token', element: <PaymentLinkView /> },
+
     ],
     TENANT: [
         { path: 'dashboard',   element: <DashboardOverview /> },

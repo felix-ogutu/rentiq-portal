@@ -73,7 +73,7 @@ export function WorkflowsView() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <Card><CardContent className="p-6 flex items-center justify-between">
                     <div><p className="text-sm text-gray-600">Pending</p>
-                        <p className="mt-1 text-3xl font-bold text-[#272757]">{workflows.length}</p></div>
+                        <p className="mt-1 text-3xl font-bold text-[#272757]">{data?.stats?.pendingCount ?? 0}</p></div>
                     <ClipboardList size={28} className="text-[#272757]" />
                 </CardContent></Card>
                 <Card><CardContent className="p-6 flex items-center justify-between">
@@ -83,12 +83,12 @@ export function WorkflowsView() {
                 </CardContent></Card>
                 <Card><CardContent className="p-6 flex items-center justify-between">
                     <div><p className="text-sm text-gray-600">Approved</p>
-                        <p className="mt-1 text-3xl font-bold text-green-600">—</p></div>
+                        <p className="mt-1 text-3xl font-bold text-green-600">{data?.stats?.approvedCount ?? 0}</p></div>
                     <CheckCircle size={28} className="text-green-600" />
                 </CardContent></Card>
                 <Card><CardContent className="p-6 flex items-center justify-between">
                     <div><p className="text-sm text-gray-600">Rejected</p>
-                        <p className="mt-1 text-3xl font-bold text-red-500">—</p></div>
+                        <p className="mt-1 text-3xl font-bold text-red-500">{data?.stats?.rejectedCount ?? 0}</p></div>
                     <XCircle size={28} className="text-red-500" />
                 </CardContent></Card>
             </div>

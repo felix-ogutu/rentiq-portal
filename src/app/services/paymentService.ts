@@ -1,4 +1,7 @@
-import {PaymentApiResponse, PaymentCreateRequest, PaymentFilter} from "../types/payment";
+import {
+    InitiateMpesaPaymentRequest,
+    InitiateMpesaPaymentResponse, PaymentApiResponse, PaymentCreateRequest, PaymentFilter
+} from "../types/payment";
 import {api} from "../lib/api";
 
 export const fetchPayments = async (
@@ -13,5 +16,13 @@ export const fetchPayments = async (
 
 export const createPayment = async (data: PaymentCreateRequest) => {
     const response = await api.post("/api/v1/payments/create", data);
+    return response.data;
+};
+
+export const initiateMpesaPayment = async (data: InitiateMpesaPaymentRequest) => {
+    const response = await api.post<InitiateMpesaPaymentResponse>(
+        "/api/v1/payments/initiate",
+        data
+    );
     return response.data;
 };

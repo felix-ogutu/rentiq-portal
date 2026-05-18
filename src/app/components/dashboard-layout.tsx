@@ -51,6 +51,7 @@ export function DashboardLayout({ children, activeTab, onTabChange, onLogout, us
           { id: 'payments',      label: 'Payments',      icon: <Receipt size={20} /> },
           { id: 'debit-notices', label: 'Debit Notices', icon: <FileText size={20} /> },
           { id: 'expenses',      label: 'Expenses',      icon: <TrendingDown size={20} /> },
+          { id: 'invoices',      label: 'Invoices',      icon: <TrendingDown size={20} /> },
           { id: 'maintenance',   label: 'Maintenance',   icon: <Wrench size={20} /> },
           // { id: 'reports',       label: 'Reports',       icon: <BarChart3 size={20} /> },
           { id: 'workflows',      label: 'Workflows',      icon: <BarcodeIcon size={20} /> },

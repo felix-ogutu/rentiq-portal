@@ -58,3 +58,16 @@ export interface PaymentApiResponse {
     data: Payment[];
     timeStamp?: string;
 }
+
+export interface InitiateMpesaPaymentRequest {
+    amount: number;
+    phone: string;
+}
+
+export interface InitiateMpesaPaymentResponse {
+    status: number;
+    message: string;
+    // Add other fields returned by your backend if any
+    checkoutRequestID?: string;
+    reference?: string;
+}

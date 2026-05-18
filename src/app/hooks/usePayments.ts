@@ -1,6 +1,6 @@
-import {PaymentApiResponse, PaymentCreateRequest, PaymentFilter} from "../types/payment";
+import {InitiateMpesaPaymentRequest, PaymentApiResponse, PaymentCreateRequest, PaymentFilter} from "../types/payment";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {createPayment, fetchPayments} from "../services/paymentService";
+import {createPayment, fetchPayments, initiateMpesaPayment} from "../services/paymentService";
 
 export const usePayments = (filters: PaymentFilter = { page: 0, size: 20 }) => {
     return useQuery<PaymentApiResponse, Error>({
@@ -18,6 +18,17 @@ export const useCreatePayment = () => {
             queryClient.invalidateQueries({ queryKey: ["payments"] });
             // Payment affects tenant balance
             queryClient.invalidateQueries({ queryKey: ["tenants"] });
+        },
+    });
+};
+
+export const useInitiateMpesaPayment = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: (data: InitiateMpesaPaymentRequest) => initiateMpesaPayment(data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["payments"] });
         },
     });
 };
