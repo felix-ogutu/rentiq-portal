@@ -51,7 +51,7 @@ export const fetchPaymentInvoice = async (token: string) => {
     const response = await api.get(
         `/api/v1/payment-link/fetch-invoice/${token}`,
     );
-    return response.data;
+    return response.data.data;
 };
 
 export const initiatePayment = async (

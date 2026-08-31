@@ -109,7 +109,6 @@ export function InvoicesView() {
     };
 
     // Generate Payment Link & Redirect
-    // Generate Payment Link & Redirect
     const handleGenerateLink = async (id: number) => {
         try {
             toast.loading("Generating payment link...", { id: "generate-link" });
@@ -120,7 +119,7 @@ export function InvoicesView() {
 
             if (result?.token) {
                 toast.success("Payment link generated successfully");
-                navigate(`/invoices/${result.token}`);
+                navigate(`/pay/${result.token}`);
             } else {
                 toast.error("Received invalid response from server");
                 console.error("Invalid response:", result);

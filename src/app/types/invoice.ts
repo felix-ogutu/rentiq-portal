@@ -77,9 +77,15 @@ export interface PaymentLinkResponse {
 }
 
 export interface PaymentInvoiceLink {
-    id: number;
     tenantName: string;
-    amount: number;
+    propertyName?: string;
+    unitNumber?: string;
+    rent: number;
+    water: number;
+    security: number;
+    totalAmount: number;
+    balance: number;
+    paidAmount: number;
     status: string;
     dueDate: string;
 }

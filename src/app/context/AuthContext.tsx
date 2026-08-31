@@ -8,7 +8,7 @@ import {
 import { api } from "../lib/api";
 import { AuthContextType, LoginResponse, User, UserRole } from "../types/user";
 
-// ── JWT decoder (no library needed) ──────────────────────────────────────────
+//JWT decoder (no library needed)
 function decodeJwt(token: string): Record<string, any> {
     try {
         const payload = token.split(".")[1];
@@ -18,7 +18,7 @@ function decodeJwt(token: string): Record<string, any> {
         return {};
     }
 }
-// ─────────────────────────────────────────────────────────────────────────────
+//
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

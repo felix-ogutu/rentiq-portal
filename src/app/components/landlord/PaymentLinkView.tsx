@@ -19,10 +19,10 @@ export function PaymentLinkView() {
         phoneNumber: "",
     });
 
-    // Auto-fill amount from invoice
+    // Autofill amount from invoice
     useEffect(() => {
-        if (invoice?.amount) {
-            setForm(prev => ({ ...prev, amount: invoice.amount }));
+        if (invoice?.totalAmount) {
+            setForm(prev => ({ ...prev, amount: invoice.totalAmount }));
         }
     }, [invoice]);
 
@@ -91,13 +91,17 @@ export function PaymentLinkView() {
                             <span className="font-medium">{invoice.tenantName}</span>
                         </div>
                         <div className="flex justify-between items-center mb-3">
+                            <span className="text-gray-600">Property Name</span>
+                            <span className="font-medium">{invoice.propertyName}</span>
+                        </div>
+                        <div className="flex justify-between items-center mb-3">
                             <span className="text-gray-600">Amount Due</span>
-                            <span className="text-2xl font-bold">KES {invoice.amount?.toLocaleString()}</span>
+                            <span className="text-2xl font-bold">KES {invoice.totalAmount?.toLocaleString()}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-gray-600">Status</span>
+                            <span className="text-gray-600">Status : {invoice.status}</span>
                             <span className="flex items-center gap-1 text-green-600">
-                                <CheckCircle size={18} /> Due
+                                <CheckCircle size={18} /> Due Paid :: {invoice.dueDate}
                             </span>
                         </div>
                     </div>

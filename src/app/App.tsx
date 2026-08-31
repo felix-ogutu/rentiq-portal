@@ -38,7 +38,6 @@ const ROLE_ROUTES: Record<string, RouteDefinition[]> = {
         { path: 'settings',      element: <SettingsView /> },
         { path: 'workflows',      element: <WorkflowsView /> },
         { path: 'invoices',      element: <InvoicesView /> },
-        { path: 'pay/:token', element: <PaymentLinkView /> },
 
     ],
     TENANT: [
@@ -152,6 +151,9 @@ function AppRoutes() {
         <Routes>
             {/* Login Route */}
             <Route path="/login" element={<RedirectIfAuthenticated />} />
+
+            {/* Public payment link — no auth, no sidebar */}
+            <Route path="/pay/:token" element={<PaymentLinkView />} />
 
             {/* Root → redirect to dashboard */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
